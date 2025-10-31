@@ -3,30 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Városok Útikalauz')</title>
-
-    <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    
-    @stack('styles')
+    <title>@yield('title', 'Laravel ZeroFour')</title>
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 </head>
-<body class="bg-light d-flex flex-column min-vh-100">
+<body class="@yield('body-class', 'is-preload')">
 
-    <!-- NAVBAR -->
-    @include('partials.navbar')
+    @include('partials.header')
 
-    <!-- TARTALOM -->
-    <main class="container my-5 flex-grow-1">
+    <div id="page-wrapper">
         @yield('content')
-    </main>
+    </div>
 
-    <!-- FOOTER -->
     @include('partials.footer')
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    @stack('scripts')
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.dropotron.min.js') }}"></script>
+    <script src="{{ asset('js/browser.min.js') }}"></script>
+    <script src="{{ asset('js/breakpoints.min.js') }}"></script>
+    <script src="{{ asset('js/util.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
