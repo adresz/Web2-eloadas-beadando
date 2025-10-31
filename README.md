@@ -20,7 +20,7 @@
 12. Futassuk az npm run dev parancsot
 
 13. A szerver futtatásához cmdben futassuk a következő parancsot: php artisan serve
-
+14. Csatlakozzunk a szerverhez a konzolban kapott címen.
 
 
 ## HA PHP NEM ISMERT PARANCS
