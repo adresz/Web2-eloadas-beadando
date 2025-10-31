@@ -5,17 +5,20 @@
 
 # https://getcomposer.org/download/
 
-3. Álljuk rá a fő mappára cmdben
-4. Futassuk a composer install parancsot
+3. Álljunk rá az imént klónozott repository mappájára CMD segítségével a "cd elérési-útvonal" parancsot használva
+4. Futtassuk a composer install parancsot
 5. írjuk be a copy .env.example .env parancsot
 
 6. Ha még nincs php a gépünkön, szedjük le a hozzá kellő fájlokat(a ZIP fájl teamsen jelen esetben)
 7. Csomagoljuk ki a fájlt a C meghajtóra, szóval egy ilyen mappa strúktúránk lesz: c:/php
 8. Futassuk a php artisan key:generate parancsot 
+
 9. Az .env fájlban írjuk át az adatbázist varosok-ra, illetve adjuk meg a szükséges felhasználó/jelszó kombót, ha nem alapértelmezett van beállítva a gépen
 10. Futassuk a php artisan migrate:fresh --seed parancsot
+
 11. Futassuk az npm install parancsot
 12. Futassuk az npm run dev parancsot
+
 13. A szerver futtatásához cmdben futassuk a következő parancsot: php artisan serve
 
 
