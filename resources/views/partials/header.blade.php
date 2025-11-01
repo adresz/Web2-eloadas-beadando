@@ -1,6 +1,9 @@
 <header id="header">
+    
+
     <div class="inner">
 
+    
         <!-- Logo -->
         <h1><a href="{{ url('/') }}" id="logo">Városok</a></h1>
 

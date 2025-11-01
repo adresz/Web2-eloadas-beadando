@@ -1,14 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VarosokController;
 
 Route::get('/', function () {
     return view('home');
 }) -> name('home');
 
-Route::get('/adatbazis', function () {
-    return view('adatbazis');
-}) -> name('adatbazis');
+Route::get('/adatbazis', [VarosokController::class, 'index'])->name('adatbazis');
 
 Route::get('/kapcsolat', function () {
     return view('kapcsolat');

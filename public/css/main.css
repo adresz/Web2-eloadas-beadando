@@ -1373,6 +1373,63 @@ input, select, textarea {
 				background: #404248;
 				color: #fff;
 			}
+			/* Alternatív táblázat – ZeroFour stílus */
+.table-wrapper {
+	overflow-x: auto;
+}
+
+table.alt {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+	table.alt tbody tr:nth-child(2n-1) {
+		background: #f7f7f7;
+	}
+
+	table.alt tbody tr:hover {
+		background: #eaeaea;
+	}
+
+	table.alt th {
+		color: #404248;
+		font-weight: 800;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		font-size: 0.8em;
+		padding: 1em 1.5em;
+		text-align: left;
+		border-bottom: solid 2px #dbdbdb;
+	}
+
+	table.alt td {
+		padding: 1em 1.5em;
+		border-bottom: solid 1px #dbdbdb;
+	}
+
+	table.alt tbody tr:last-child td {
+		border-bottom: 0;
+	}
+
+	/* Badge-ek */
+	.label {
+		display: inline-block;
+		background: #4CAF50;
+		color: white;
+		padding: 0.25em 0.75em;
+		font-size: 0.7em;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		border-radius: 4px;
+		margin-left: 0.5em;
+		vertical-align: middle;
+	}
+
+	.label.warning {
+		background: #FF9800;
+	}
 
 /* Image */
 
