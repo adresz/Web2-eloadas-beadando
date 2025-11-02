@@ -11,7 +11,6 @@ if(isset($request)){
 echo "<h1>Results</h1>"; 
 echo "Név: ".$request->name."<br>"; 
 echo "Email: ".$request->email."<br>"; 
-echo "Jelszó: ".$request->passw."<br>"; 
 echo "Város: ".$request->city."<br>"; 
 echo "Kor: ".$request->age."<p>"; 
 echo "Üzenet: ". $request->message . "<br>";
@@ -39,8 +38,6 @@ echo "Üzenet: ". $request->message . "<br>";
                 <label>Név:</label><input type="text" name="name"><br> 
                 @if ($errors->has('email'))<strong>{{ $errors->first('email') }}</strong><br>@endif    
                 <label>E-mail:</label><input type="text" name="email"><br> 
-                @if ($errors->has('passw'))<strong>{{ $errors->first('passw') }}</strong><br>@endif 
-                <label>Jelszó:</label><input type="password" name="passw"><br> 
                 <label>Város:</label> 
                 <select name="city"> 
                     <option value="1">Budapest</option> 
