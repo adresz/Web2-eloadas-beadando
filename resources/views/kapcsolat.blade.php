@@ -4,12 +4,58 @@
 @section('body-class', 'left-sidebar is-preload')
 
 @section('content')
+
+<?php   
+// Ha a validációs szabályok sikeresek, és az űrlapadatok helyesen kerülnek elküldésre: 
+if(isset($request)){   
+echo "<h1>Results</h1>"; 
+echo "Név: ".$request->name."<br>"; 
+echo "Email: ".$request->email."<br>"; 
+echo "Jelszó: ".$request->passw."<br>"; 
+echo "Város: ".$request->city."<br>"; 
+echo "Kor: ".$request->age."<p>"; 
+echo "Üzenet: ". $request->message . "<br>";
+}
+?> 
+
+
 <div id="main-wrapper">
 
     <div class="wrapper style2">
         <div class="inner">
             <div class="container">
-                <h1>Ide kell az oldal fő tartalma</h1>
+              <form method="post" action="form"> 
+                @csrf         
+                @if (count($errors) > 0) 
+                <ul> 
+                    @foreach ($errors->all() as $error) 
+                        <li>{{ $error }}</li> 
+                    @endforeach 
+                </ul> 
+                @endif    
+                <h1>Írjon nekünk!</h1>    
+
+                @if ($errors->has('name'))<strong>{{ $errors->first('name') }}</strong><br>@endif 
+                <label>Név:</label><input type="text" name="name"><br> 
+                @if ($errors->has('email'))<strong>{{ $errors->first('email') }}</strong><br>@endif    
+                <label>E-mail:</label><input type="text" name="email"><br> 
+                @if ($errors->has('passw'))<strong>{{ $errors->first('passw') }}</strong><br>@endif 
+                <label>Jelszó:</label><input type="password" name="passw"><br> 
+                <label>Város:</label> 
+                <select name="city"> 
+                    <option value="1">Budapest</option> 
+                    <option value="2">Kecskemét</option> 
+                    <option value="3">Pécs</option> 
+                    <option value="4">Debrecen</option> 
+                    <option value="5">Más</option> 
+                </select><br> 
+                @if ($errors->has('age'))<strong>{{ $errors->first('age') }}</strong><br>@endif 
+                <label>Kor:</label><input type="number" name="age"><br> 
+                <label>Üzenet:</label><br>
+                <textarea name="message" rows="5" cols="30">{{ old('message') }}</textarea><br><br>
+                <label></label><input type="submit" value="Send"> 
+            </form> 
+
             </div>
         </div>
     </div>

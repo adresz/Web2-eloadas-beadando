@@ -15,6 +15,9 @@ Route::get('/kapcsolat', function () {
     return view('kapcsolat');
 }) -> name('kapcsolat');
 
+Route::get('form', function () { return view('form'); }); 
+Route::post('form', 'App\Http\Controllers\ControllerForm@PrintFormContent');
+
 Route::get('/uzenetek', function () {
     return view('uzenetek');
 }) -> name('uzenetek') -> middleware('uzenetek');
