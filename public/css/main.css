@@ -2484,3 +2484,21 @@ table.alt {
 			}
 
 	}
+	.text-danger {
+    color: #e74c3c !important;
+    font-size: 0.9em;
+    margin-top: 0.25em;
+}
+
+.alert-danger {
+    background: #e74c3c;
+    color: white;
+    padding: 0.75em;
+    border-radius: 4px;
+    margin-bottom: 1em;
+}
+
+.alert-danger ul {
+    margin: 0;
+    padding-left: 1.2em;
+}

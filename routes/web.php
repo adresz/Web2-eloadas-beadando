@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VarosokController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', function () {
     return view('home');
@@ -15,7 +17,7 @@ Route::get('/kapcsolat', function () {
 
 Route::get('/uzenetek', function () {
     return view('uzenetek');
-}) -> name('uzenetek');
+}) -> name('uzenetek') -> middleware('uzenetek');
 
 Route::get('/diagram', function () {
     return view('diagram');
@@ -27,4 +29,17 @@ Route::get('/crud', function () {
 
 Route::get('/admin', function () {
     return view('admin');
-}) -> name('admin');
+})->name('admin') -> middleware('admin');
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
+
+    Route::get('/register', [RegisterController::class, 'create'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store']);
+});
+
+Route::middleware('auth')->group(function () {
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});
