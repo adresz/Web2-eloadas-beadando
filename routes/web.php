@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LelekszamController;
 use App\Http\Controllers\UzenetController;
+use App\Http\Controllers\ChartController;
 
 Route::get('/', function () {
     return view('home');
@@ -25,9 +26,7 @@ Route::get('/uzenetek', [UzenetController::class, 'index'])
     ->middleware('uzenetek');
 Route::post('/uzenetek', [UzenetController::class, 'store'])->name('uzenetek.store');
 
-Route::get('/diagram', function () {
-    return view('diagram');
-}) -> name('diagram');
+Route::get('/diagram', [ChartController::class, 'topvarosok'])->name('diagram');
 
 Route::resource('lelekszam', LelekszamController::class);
 
