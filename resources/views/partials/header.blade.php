@@ -1,6 +1,21 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Oldal')</title>
+
+    <!-- Alap CSS -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/crud.css') }}">
+
+    <!-- Egyedi stílusok -->
+    @stack('styles')
+</head>
+<body class="@yield('body-class')">
+
 <header id="header">
     <div class="inner">
-
         <!-- Logo -->
         <h1><a href="{{ url('/') }}" id="logo">Városok</a></h1>
 
@@ -29,8 +44,8 @@
                     <a href="{{ route('diagram') }}">Diagram</a>
                 </li>
 
-                <li class="{{ Route::is('crud') ? 'active' : '' }}">
-                    <a href="{{ route('crud') }}">CRUD</a>
+                <li class="{{ Route::is('lelekszam.index') ? 'active' : '' }}">
+                    <a href="{{ route('lelekszam.index') }}">CRUD</a>
                 </li>
 
                 @auth
@@ -59,3 +74,10 @@
         </nav>
     </div>
 </header>
+
+<!-- JS Stack (Itt kerül betöltésre minden @push('scripts') tartalom) -->
+<script src="{{ asset('js/app.js') }}"></script>
+@stack('scripts')
+
+</body>
+</html>

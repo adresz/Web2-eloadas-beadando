@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Lelekszam extends Model
 {
     protected $table = 'lelekszam';
+
     protected $fillable = ['varosid', 'ev', 'no', 'osszesen'];
 
-    public function varos()
+    // Férfiak száma (kiszámolt mező)
+    public function getFerfiAttribute()
     {
-        return $this->belongsTo(Varos::class, 'varosid');
+        return $this->osszesen - $this->no;
     }
 }

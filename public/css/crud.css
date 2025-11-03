@@ -1,0 +1,175 @@
+/* -------------------------------------------------
+   custom.css – CRUD oldal stílusai (szépített verzió)
+---------------------------------------------------*/
+
+.crud-table-container {
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1.8rem;
+    background: #fff;
+}
+
+/* --- TÁBLÁZAT ALAP --- */
+.crud-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* --- FEJLÉC --- */
+.crud-table thead {
+    background: linear-gradient(90deg, #f8f9fa, #f1f3f5);
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.crud-table th {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.crud-table th:hover {
+    background: #e9ecef;
+    color: #000;
+}
+
+/* --- ADAT CELLÁK --- */
+.crud-table td {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+/* --- SOR KIEMELÉS --- */
+.crud-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+/* --- JOBBRA IGAZÍTOTT OSZLOPOK (számok) --- */
+.crud-table th:nth-child(3),
+.crud-table th:nth-child(4),
+.crud-table th:nth-child(5),
+.crud-table td:nth-child(3),
+.crud-table td:nth-child(4),
+.crud-table td:nth-child(5) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* --- MŰVELETEK OSZLOP --- */
+.crud-table th:last-child,
+.crud-table td:last-child {
+    text-align: center;
+    width: 150px;
+    white-space: nowrap;
+}
+
+/* --- GOMBOK --- */
+.crud-action-btn {
+    font-size: 0.85rem !important;
+    padding: 0.4rem 0.7rem !important;
+    margin: 0 3px !important;
+    min-width: 70px;
+    display: inline-block;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.crud-action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.crud-add-btn {
+    font-size: 0.95rem !important;
+    padding: 0.55rem 1rem !important;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+/* --- ALERT --- */
+.crud-alert {
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background: #e6ffed;
+    border: 1px solid #b2f5c2;
+    color: #245a32;
+}
+
+.crud-alert .btn-close {
+    font-size: 0.8rem;
+}
+
+/* --- ÜRES TÁBLA --- */
+.crud-empty {
+    padding: 1.5rem;
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    background: #fdfdfd;
+}
+
+/* --- LAPOZÁS --- */
+.crud-pagination {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.crud-pagination .pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.crud-pagination .pagination li {
+    display: inline;
+    margin: 0 3px;
+}
+
+.crud-pagination .pagination li a,
+.crud-pagination .pagination li span {
+    display: inline-block;
+    padding: 0.45rem 0.75rem;
+    min-width: 38px;
+    text-align: center;
+    border-radius: 5px;
+    background: #f8f9fa;
+    color: #495057;
+    text-decoration: none;
+    border: 1px solid #dee2e6;
+    transition: all 0.2s;
+}
+
+.crud-pagination .pagination li a:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.crud-pagination .pagination li.active span {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.crud-pagination .pagination li.disabled span {
+    color: #6c757d;
+    background: #f8f9fa;
+    cursor: not-allowed;
+}

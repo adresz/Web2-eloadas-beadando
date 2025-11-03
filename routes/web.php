@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VarosokController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\LelekszamController;
 
 Route::get('/', function () {
     return view('home');
@@ -26,9 +27,7 @@ Route::get('/diagram', function () {
     return view('diagram');
 }) -> name('diagram');
 
-Route::get('/crud', function () {
-    return view('crud');
-}) -> name('crud');
+Route::resource('lelekszam', LelekszamController::class);
 
 Route::get('/admin', function () {
     return view('admin');
