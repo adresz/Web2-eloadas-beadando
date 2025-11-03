@@ -10,7 +10,7 @@ class UzenetController extends Controller
     public function index()
     {
         $uzenetek = Uzenet::orderBy('created_at', 'desc')->paginate(10); // Legújabb elöl, oldalanként 10
-        return view('uzenetek.index', compact('uzenetek'));
+        return view('uzenetek', compact('uzenetek'));
     }
 
     public function store(Request $request)

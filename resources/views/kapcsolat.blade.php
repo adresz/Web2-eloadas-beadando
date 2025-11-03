@@ -35,11 +35,11 @@ echo "Üzenet: ". $request->message . "<br>";
                 <h1>Írjon nekünk!</h1>    
 
                 @if ($errors->has('name'))<strong>{{ $errors->first('name') }}</strong><br>@endif 
-                <label>Név:</label><input type="text" name="name"><br> 
+                <label>Név:</label><input type="text" name="nev"><br> 
                 @if ($errors->has('email'))<strong>{{ $errors->first('email') }}</strong><br>@endif    
                 <label>E-mail:</label><input type="text" name="email"><br> 
                 <label>Város:</label> 
-                <select name="city"> 
+                <select name="varos"> 
                     <option value="1">Budapest</option> 
                     <option value="2">Kecskemét</option> 
                     <option value="3">Pécs</option> 
@@ -47,9 +47,9 @@ echo "Üzenet: ". $request->message . "<br>";
                     <option value="5">Más</option> 
                 </select><br> 
                 @if ($errors->has('age'))<strong>{{ $errors->first('age') }}</strong><br>@endif 
-                <label>Kor:</label><input type="number" name="age"><br> 
+                <label>Kor:</label><input type="number" name="kor"><br> 
                 <label>Üzenet:</label><br>
-                <textarea name="message" rows="5" cols="30">{{ old('message') }}</textarea><br><br>
+                <textarea name="uzenet" rows="5" cols="30">{{ old('message') }}</textarea><br><br>
                 <label></label><input type="submit" value="Send"> 
             </form> 
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\VarosokController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LelekszamController;
+use App\Http\Controllers\UzenetController;
 
 Route::get('/', function () {
     return view('home');
@@ -17,11 +18,12 @@ Route::get('/kapcsolat', function () {
 }) -> name('kapcsolat');
 
 Route::get('form', function () { return view('form'); }); 
-Route::post('form', 'App\Http\Controllers\ControllerForm@PrintFormContent');
+Route::post('form', [UzenetController::class, 'store']);
 
-Route::get('/uzenetek', function () {
-    return view('uzenetek');
-}) -> name('uzenetek') -> middleware('uzenetek');
+Route::get('/uzenetek', [UzenetController::class, 'index'])
+    ->name('uzenetek')
+    ->middleware('uzenetek');
+Route::post('/uzenetek', [UzenetController::class, 'store'])->name('uzenetek.store');
 
 Route::get('/diagram', function () {
     return view('diagram');
