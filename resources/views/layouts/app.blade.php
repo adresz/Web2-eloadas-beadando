@@ -24,5 +24,9 @@
     <script src="{{ asset('js/breakpoints.min.js') }}"></script>
     <script src="{{ asset('js/util.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+
+
+    @stack('scripts')
+
 </body>
 </html>

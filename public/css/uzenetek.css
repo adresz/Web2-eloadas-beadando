@@ -1,0 +1,121 @@
+/* public/uzenetek.css – KÉP SZERINT TÖKÉLETESÍTVE */
+
+.table-messages {
+    background: #fff;
+    border-radius: 16px;               /* Nagyobb kerekítés */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.table-messages thead {
+    background: linear-gradient(135deg, #2c3e50, #1a2a3a); /* Mélyebb sötétkék */
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+}
+
+.table-messages th {
+    padding: 1.2rem 1rem;
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+    border: none;
+}
+
+.table-messages tbody td {
+    padding: 1.1rem 1rem;
+    border-bottom: 1px solid #eef0f2;
+    vertical-align: middle;
+    background-color: #fafafa; /* Könnyű háttér a sorokban */
+    transition: all 0.25s ease;
+}
+
+.table-messages tbody tr {
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.table-messages tbody tr:hover {
+    background-color: #f1f5f9 !important;
+    border-left-color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.15);
+    z-index: 2;
+    position: relative;
+}
+
+.table-messages tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.varos{
+    font-weight: 800;
+    color:  black;
+}
+
+.uzenet-cell {
+    max-width: 320px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.93rem;
+    color: #2c3e50;
+    cursor: pointer;
+    position: relative;
+}
+
+.uzenet-cell:hover {
+    white-space: normal;
+    overflow: visible;
+    background: #ffffff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    min-width: 400px;
+    max-width: 500px;
+    border: 1px solid #e2e8f0;
+    transform: translateY(-8px);
+}
+
+/* LAPOZÓ – KEREK, SZÉP */
+.pagination {
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.pagination .page-link {
+    color: #2c3e50;
+    background: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    padding: 0.6rem 1rem;
+    margin: 0 0.3rem;
+    border-radius: 50px !important;
+    font-weight: 500;
+    min-width: 44px;
+    transition: all 0.3s ease;
+}
+
+.pagination .page-item.active .page-link {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.pagination .page-link:hover:not(.active) {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.25);
+}

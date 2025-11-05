@@ -7,27 +7,40 @@ use Illuminate\Http\Request;
 
 class LelekszamController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $query = Lelekszam::query()
             ->select('*')
-            ->selectRaw('osszesen - no as ferfi'); // virtuális "ferfi" mező
+            ->selectRaw('osszesen - no AS ferfi'); // virtuális férfi mező
 
-        // Rendezés oszlopra kattintva
-        $sort = request('sort');
-        $dir = request('dir', 'asc');
+        // === KERESÉS ===
+        if ($search = $request->query('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('varosid', 'like', "%{$search}%")
+                ->orWhere('ev', 'like', "%{$search}%")
+                ->orWhere('no', 'like', "%{$search}%")
+                ->orWhere('osszesen', 'like', "%{$search}%")
+                ->orWhereRaw('osszesen - no LIKE ?', ["%{$search}%"]); // férfi keresése
+            });
+        }
+
+        // === RENDEZÉS ===
+        $sort = $request->query('sort');
+        $dir = $request->query('dir', 'asc') === 'desc' ? 'desc' : 'asc';
 
         $allowedSorts = ['varosid', 'ev', 'no', 'ferfi', 'osszesen'];
+
         if ($sort && in_array($sort, $allowedSorts)) {
-            if ($sort == 'ferfi') {
-                $query->orderByRaw('osszesen - no ' . $dir);
+            if ($sort === 'ferfi') {
+                $query->orderByRaw("(osszesen - no) " . ($dir === 'desc' ? 'DESC' : 'ASC'));
             } else {
                 $query->orderBy($sort, $dir);
             }
         } else {
-            $query->orderBy('varosid')->orderBy('ev');
+            $query->orderBy('varosid', 'asc')->orderBy('ev', 'asc');
         }
 
+        // === LAPOZÁS + query string megőrzése ===
         $adatok = $query->paginate(15)->withQueryString();
 
         return view('lelekszam.crud', compact('adatok'));

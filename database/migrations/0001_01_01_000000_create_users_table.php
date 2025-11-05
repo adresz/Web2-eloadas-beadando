@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             // Role column added with default value 'visitor'
-            $table->enum('role', ['visitor', 'registered', 'admin'])->default('visitor');
+            $table->enum('role', ['registered', 'admin'])->default('registered');
             $table->rememberToken();
             $table->timestamps();
         });

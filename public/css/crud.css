@@ -1,66 +1,47 @@
 /* -------------------------------------------------
-   custom.css – CRUD oldal stílusai (szépített verzió)
+   custom.css – CRUD oldal stílusai (KÉP SZERINT JAVÍTVA)
 ---------------------------------------------------*/
 
 .crud-table-container {
     overflow-x: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    margin-bottom: 1.8rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
     background: #fff;
+    padding: 1rem;
 }
 
-/* --- TÁBLÁZAT ALAP --- */
+/* --- TÁBLÁZAT --- */
 .crud-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.95rem;
-    line-height: 1.5;
-    color: #333;
+    color: #2c3e50;
 }
 
-/* --- FEJLÉC --- */
 .crud-table thead {
-    background: linear-gradient(90deg, #f8f9fa, #f1f3f5);
-    color: #333;
+    background: #f8f9fa;
     text-transform: uppercase;
+    font-size: 0.8rem;
     letter-spacing: 0.5px;
-    position: sticky;
-    top: 0;
-    z-index: 2;
+    color: #495057;
 }
 
 .crud-table th {
-    padding: 0.9rem 1rem;
+    padding: 1rem;
     text-align: left;
     font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    white-space: nowrap;
     border-bottom: 2px solid #dee2e6;
-}
-
-.crud-table th:hover {
-    background: #e9ecef;
-    color: #000;
-}
-
-/* --- ADAT CELLÁK --- */
-.crud-table td {
-    padding: 0.9rem 1rem;
-    text-align: left;
-    border-bottom: 1px solid #f0f0f0;
-    vertical-align: middle;
     white-space: nowrap;
-    transition: background 0.2s;
 }
 
-/* --- SOR KIEMELÉS --- */
-.crud-table tbody tr:hover {
-    background: #f8f9fa;
+.crud-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    white-space: nowrap;
 }
 
-/* --- JOBBRA IGAZÍTOTT OSZLOPOK (számok) --- */
+/* --- SZÁMOK JOBBRA --- */
 .crud-table th:nth-child(3),
 .crud-table th:nth-child(4),
 .crud-table th:nth-child(5),
@@ -71,105 +52,107 @@
     font-variant-numeric: tabular-nums;
 }
 
+/* --- SOR HOVER --- */
+.crud-table tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: background 0.2s;
+}
+
 /* --- MŰVELETEK OSZLOP --- */
 .crud-table th:last-child,
 .crud-table td:last-child {
     text-align: center;
-    width: 150px;
-    white-space: nowrap;
+    min-width: 110px; /* Hely a gomboknak */
 }
 
-/* --- GOMBOK --- */
-.crud-action-btn {
-    font-size: 0.85rem !important;
-    padding: 0.4rem 0.7rem !important;
-    margin: 0 3px !important;
-    min-width: 70px;
+/* --- "ÚJ ADAT" GOMB --- */
+.crud-add-btn {
     display: inline-block;
-    border-radius: 6px;
-    transition: all 0.2s;
+    background: #3498db;
+    color: white !important;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    transition: all 0.3s;
+    margin-bottom: 1.5rem;
 }
 
-.crud-action-btn:hover {
+.crud-add-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* --- GOMBOK A SOROKBAN (Szerkeszt / Töröl) --- */
+.crud-action-btn {
+    display: block;
+    width: 100%;
+    margin: 4px 0;
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s;
+    min-height: 36px;
+}
+
+/* SZERKESZT GOMB – VILÁGOSKÉK */
+.crud-action-btn.edit {
+    background: #5dade2;
+    color: white;
+}
+
+.crud-action-btn.edit:hover {
+    background: #3498db;
     transform: translateY(-1px);
 }
 
-.crud-add-btn {
-    font-size: 0.95rem !important;
-    padding: 0.55rem 1rem !important;
-    border-radius: 8px;
-    transition: all 0.2s;
+/* TÖRÖL GOMB – SÖTÉTSZÜRKE */
+.crud-action-btn.delete {
+    background: #2c3e50;
+    color: white;
 }
 
-/* --- ALERT --- */
-.crud-alert {
-    font-size: 0.95rem;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    background: #e6ffed;
-    border: 1px solid #b2f5c2;
-    color: #245a32;
-}
-
-.crud-alert .btn-close {
-    font-size: 0.8rem;
-}
-
-/* --- ÜRES TÁBLA --- */
-.crud-empty {
-    padding: 1.5rem;
-    text-align: center;
-    color: #777;
-    font-style: italic;
-    background: #fdfdfd;
+.crud-action-btn.delete:hover {
+    background: #1a252f;
+    transform: translateY(-1px);
 }
 
 /* --- LAPOZÁS --- */
 .crud-pagination {
-    margin-top: 1.5rem;
     text-align: center;
-    font-size: 0.85rem;
+    margin-top: 2rem;
 }
 
 .crud-pagination .pagination {
-    display: inline-block;
+    display: inline-flex;
     padding: 0;
     margin: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.crud-pagination .pagination li {
-    display: inline;
-    margin: 0 3px;
-}
-
-.crud-pagination .pagination li a,
-.crud-pagination .pagination li span {
-    display: inline-block;
-    padding: 0.45rem 0.75rem;
-    min-width: 38px;
-    text-align: center;
-    border-radius: 5px;
+.crud-pagination .page-item .page-link {
+    padding: 0.6rem 1rem;
+    border: none;
     background: #f8f9fa;
     color: #495057;
-    text-decoration: none;
-    border: 1px solid #dee2e6;
-    transition: all 0.2s;
+    font-weight: 500;
 }
 
-.crud-pagination .pagination li a:hover {
-    background: #e9ecef;
-    border-color: #adb5bd;
-}
-
-.crud-pagination .pagination li.active span {
-    background: #007bff;
+.crud-pagination .page-item.active .page-link {
+    background: #3498db;
     color: white;
-    border-color: #007bff;
 }
 
-.crud-pagination .pagination li.disabled span {
-    color: #6c757d;
-    background: #f8f9fa;
-    cursor: not-allowed;
+.crud-pagination .page-item .page-link:hover:not(.active) {
+    background: #e9ecef;
 }
