@@ -1,0 +1,57 @@
+.city { 
+    scroll-margin-top: 100px;  /* Ha anchor linkkel odaugrasz, 100px-re hagy a tetejétől */
+}
+
+.hover-shadow { 
+    transition: all .3s ease;  /* Minden változás (pl. box-shadow, transform) 0.3s alatt, simán történik */
+}
+
+.hover-shadow:hover { 
+    box-shadow: 0 1.2rem 3.5rem rgba(0,0,0,.3)!important;  /* Egér fölé menve árnyék jelenik meg */
+    transform: translateY(-10px);  /* Feljebb ugrik 10px-re hoverkor */
+}
+
+.city-img-wrapper {
+    width: 100%;   /* Teljes szélesség */
+    height: 350px; /* Fix magasság 350px */
+}
+
+.city-img {
+    width: 100%;          /* A kép kitölti a wrapper szélességét */
+    height: 100%;         /* A kép kitölti a wrapper magasságát */
+    object-fit: cover;    /* A kép arányosan kitölti a keretet, levágva a túlcsordulót */
+    object-position: center; /* A kép közepét mutatja, ha levágódik */
+}
+
+/* Top látnivalók egységes kártya méret és stílus */
+.row .col > .d-flex {
+    height: 70px;              /* Fix magasság a kártyáknak */
+    min-height: 70px;          /* Minimum magasság is 70px */
+    align-items: center;       /* Függőlegesen középre rendezi a tartalmat */
+    justify-content: flex-start; /* Vízszintesen balra rendezve ikon + szöveg */
+    gap: 0.5rem;               /* Kis távolság ikon és szöveg között */
+    font-size: 0.95rem;        /* Egységes betűméret */
+    border-radius: 0.5rem;     /* Lekerekített sarkok */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animáció hoverkor */
+}
+
+.row .col > .d-flex:hover {
+    transform: translateY(-3px); /* Feljebb ugrik 3px-re hoverkor */
+    box-shadow: 0 0.8rem 2rem rgba(0,0,0,0.15); /* Lágy árnyék hoverkor */
+}
+
+.row .col > .d-flex i {
+    font-size: 1.2rem;      /* Ikon mérete */
+    min-width: 24px;        /* Ikon fix szélessége, hogy a szöveg ne csússzon */
+    text-align: center;     /* Ikon középre igazítása */
+}
+
+.card.city {
+    height: 400px;           /* Fix magasság minden city kártyának */
+    display: flex;            /* Flexbox a kártya tartalmának elrendezéséhez */
+    flex-direction: column;   /* Függőleges irányban helyezi el a tartalmat */
+}
+
+.card-body {
+    flex-grow: 1;            /* A tartalom kitölti a maradék helyet a card-ban */
+}
