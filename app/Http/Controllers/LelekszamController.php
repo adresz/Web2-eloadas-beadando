@@ -20,7 +20,7 @@ class LelekszamController extends Controller
                 ->orWhere('ev', 'like', "%{$search}%")
                 ->orWhere('no', 'like', "%{$search}%")
                 ->orWhere('osszesen', 'like', "%{$search}%")
-                ->orWhereRaw('osszesen - no LIKE ?', ["%{$search}%"]); // férfi keresése
+                ->orWhereRaw('(osszesen - no) LIKE ?', ["%{$search}%"]);
             });
         }
 
@@ -43,7 +43,10 @@ class LelekszamController extends Controller
         // === LAPOZÁS + query string megőrzése ===
         $adatok = $query->paginate(15)->withQueryString();
 
-        return view('lelekszam.crud', compact('adatok'));
+        // FONTOS: add át a $sort és $dir változókat a nézetnek!
+        return view('lelekszam.crud', compact('adatok'))
+            ->with('sort', $sort ?? 'varosid')
+            ->with('dir', $dir);
     }
 
     public function create()

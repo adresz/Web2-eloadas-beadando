@@ -5,12 +5,10 @@
 @section('title', 'Lélekszám Kezelő')
 @section('body-class', 'left-sidebar is-preload')
 
-{{-- CSS – CSAK ERRE AZ OLDALRA --}}
 @push('styles')
     <link href="{{ asset('css/crud.css') }}" rel="stylesheet">
 @endpush
 
-{{-- JS – Rendezés + Alert eltűnés --}}
 @push('scripts')
 <script>
     function sortTable(column) {
@@ -29,7 +27,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Alert automatikus eltűnése
         const alert = document.querySelector('.crud-alert');
         if (alert) {
             setTimeout(() => {
@@ -39,7 +36,6 @@
             }, 3000);
         }
 
-        // TH hover effektus
         document.querySelectorAll('th[onclick]').forEach(th => {
             th.addEventListener('mouseenter', () => {
                 if (!th.dataset.originalBg) {
@@ -54,6 +50,34 @@
                 }
             });
         });
+
+        // *** ÚJ: Kiemelés logika ***
+        const searchTerm = "{{ request('search') }}".trim().toLowerCase();
+        if (searchTerm) {
+            const rows = document.querySelectorAll('.crud-table tbody tr');
+            rows.forEach(row => {
+                let found = false;
+                const cells = row.querySelectorAll('td');
+                cells.forEach((cell, index) => {
+                    if (index === cells.length - 1) return; // Műveletek oszlop kihagyása
+
+                    let cellText = cell.textContent.trim().toLowerCase();
+                    // Számoknál vessző eltávolítása (pl. 3,962 → 3962)
+                    cellText = cellText.replace(/,/g, '');
+
+                    if (cellText.includes(searchTerm)) {
+                        found = true;
+                        // Kiemelés csak az adott cellára
+                        cell.classList.add('highlight');
+                    }
+                });
+
+                if (found) {
+                    // Opcionális: egész sor hover kiemelés
+                    row.style.borderLeft = '4px solid #ffc107';
+                }
+            });
+        }
     });
 </script>
 @endpush
@@ -68,54 +92,70 @@
                     <p>Városok népessége év és nem szerint</p>
                 </header>
 
-                {{-- SIKER ÜZENET --}}
                 @if(session('success'))
-                    <div class="alert alert-success alert-dismissible fade show crud-alert">
+                    <div class="alert alert-success alert-dismissible fade show crud-alert" role="alert">
                         {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
+                <div class="mb-4">
+    <form method="GET" action="{{ route('lelekszam.index') }}" class="d-flex">
+        <input 
+            type="text" 
+            name="search" 
+            class="form-control me-2" 
+            placeholder="Keresés város ID, év, nők, férfiak, összesen..." 
+            value="{{ request('search') }}"
+            style="max-width: 400px;"
+        >
+        <button type="submit" class="btn btn-primary">Keresés</button>
+        
+        @if(request('search'))
+            <a href="{{ route('lelekszam.index') }}" class="btn btn-secondary ms-2">
+                Törlés
+            </a>
+        @endif
+    </form>
+</div>
 
-                {{-- ÚJ ADAT GOMB --}}
                 <div class="text-end mb-4">
                     <a href="{{ route('lelekszam.create') }}" class="crud-add-btn">
                         ÚJ ADAT
                     </a>
                 </div>
 
-                {{-- TÁBLÁZAT KONTÉNER --}}
                 <div class="crud-table-container">
                     <table class="crud-table">
                         <thead>
                             <tr>
                                 <th onclick="sortTable('varosid')" style="cursor: pointer;">
                                     Város ID
-                                    @if(request('sort') === 'varosid')
-                                        <small>{!! request('dir') === 'asc' ? '↑' : '↓' !!}</small>
+                                    @if($sort === 'varosid')
+                                        <small>{!! $dir === 'asc' ? '↑' : '↓' !!}</small>
                                     @endif
                                 </th>
                                 <th onclick="sortTable('ev')" style="cursor: pointer;">
                                     Év
-                                    @if(request('sort') === 'ev')
-                                        <small>{!! request('dir') === 'asc' ? '↑' : '↓' !!}</small>
+                                    @if($sort === 'ev')
+                                        <small>{!! $dir === 'asc' ? '↑' : '↓' !!}</small>
                                     @endif
                                 </th>
                                 <th onclick="sortTable('no')" style="cursor: pointer;">
                                     Nők
-                                    @if(request('sort') === 'no')
-                                        <small>{!! request('dir') === 'asc' ? '↑' : '↓' !!}</small>
+                                    @if($sort === 'no')
+                                        <small>{!! $dir === 'asc' ? '↑' : '↓' !!}</small>
                                     @endif
                                 </th>
                                 <th onclick="sortTable('ferfi')" style="cursor: pointer;">
                                     Férfiak
-                                    @if(request('sort') === 'ferfi')
-                                        <small>{!! request('dir') === 'asc' ? '↑' : '↓' !!}</small>
+                                    @if($sort === 'ferfi')
+                                        <small>{!! $dir === 'asc' ? '↑' : '↓' !!}</small>
                                     @endif
                                 </th>
                                 <th onclick="sortTable('osszesen')" style="cursor: pointer;">
                                     Összesen
-                                    @if(request('sort') === 'osszesen')
-                                        <small>{!! request('dir') === 'asc' ? '↑' : '↓' !!}</small>
+                                    @if($sort === 'osszesen')
+                                        <small>{!! $dir === 'asc' ? '↑' : '↓' !!}</small>
                                     @endif
                                 </th>
                                 <th>Műveletek</th>
@@ -141,7 +181,7 @@
                                               onsubmit="return confirm('Biztosan törlöd ezt az adatot?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="crud-action-btn">
+                                            <button type="submit" class="crud-action-btn delete">
                                                 TÖRÖL
                                             </button>
                                         </form>

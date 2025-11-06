@@ -156,3 +156,13 @@
 .crud-pagination .page-item .page-link:hover:not(.active) {
     background: #e9ecef;
 }
+        .highlight {
+            background-color: #fff3cd !important; /* Bootstrap warning szín árnyalata */
+            font-weight: bold;
+            color: #856404;
+            transition: background-color 0.3s ease;
+        }
+        /* Hover hatás a sorokra */
+        .crud-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
