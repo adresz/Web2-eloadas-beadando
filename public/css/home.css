@@ -1,57 +1,265 @@
+/* ========================================
+   ÁLTALÁNOS STÍLUSOK
+   ======================================== */
 .city { 
-    scroll-margin-top: 100px;  /* Ha anchor linkkel odaugrasz, 100px-re hagy a tetejétől */
+    scroll-margin-top: 100px;
 }
 
 .hover-shadow { 
-    transition: all .3s ease;  /* Minden változás (pl. box-shadow, transform) 0.3s alatt, simán történik */
+    transition: all .4s ease;
 }
 
 .hover-shadow:hover { 
-    box-shadow: 0 1.2rem 3.5rem rgba(0,0,0,.3)!important;  /* Egér fölé menve árnyék jelenik meg */
-    transform: translateY(-10px);  /* Feljebb ugrik 10px-re hoverkor */
+    box-shadow: 0 1.8rem 4.5rem rgba(0,0,0,.28) !important;
+    transform: translateY(-14px);
 }
 
+/* Részletes nézet képe */
 .city-img-wrapper {
-    width: 100%;   /* Teljes szélesség */
-    height: 350px; /* Fix magasság 350px */
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,.15);
 }
 
 .city-img {
-    width: 100%;          /* A kép kitölti a wrapper szélességét */
-    height: 100%;         /* A kép kitölti a wrapper magasságát */
-    object-fit: cover;    /* A kép arányosan kitölti a keretet, levágva a túlcsordulót */
-    object-position: center; /* A kép közepét mutatja, ha levágódik */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .5s ease;
 }
 
-/* Top látnivalók egységes kártya méret és stílus */
+.city-img:hover {
+    transform: scale(1.03);
+}
+
+/* Top látnivalók gombok */
 .row .col > .d-flex {
-    height: 70px;              /* Fix magasság a kártyáknak */
-    min-height: 70px;          /* Minimum magasság is 70px */
-    align-items: center;       /* Függőlegesen középre rendezi a tartalmat */
-    justify-content: flex-start; /* Vízszintesen balra rendezve ikon + szöveg */
-    gap: 0.5rem;               /* Kis távolság ikon és szöveg között */
-    font-size: 0.95rem;        /* Egységes betűméret */
-    border-radius: 0.5rem;     /* Lekerekített sarkok */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animáció hoverkor */
+    height: 70px;
+    min-height: 70px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    border-radius: 0.7rem;
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+    padding: 0.75rem 1rem;
 }
 
 .row .col > .d-flex:hover {
-    transform: translateY(-3px); /* Feljebb ugrik 3px-re hoverkor */
-    box-shadow: 0 0.8rem 2rem rgba(0,0,0,0.15); /* Lágy árnyék hoverkor */
+    transform: translateY(-3px);
+    box-shadow: 0 0.8rem 2rem rgba(0,0,0,0.15);
+    border-color: #0d6efd;
+    background-color: #fff;
 }
 
 .row .col > .d-flex i {
-    font-size: 1.2rem;      /* Ikon mérete */
-    min-width: 24px;        /* Ikon fix szélessége, hogy a szöveg ne csússzon */
-    text-align: center;     /* Ikon középre igazítása */
+    font-size: 1.2rem;
+    min-width: 24px;
+    text-align: center;
+    color: #0d6efd;
 }
 
-.card.city {
-    height: 400px;           /* Fix magasság minden city kártyának */
-    display: flex;            /* Flexbox a kártya tartalmának elrendezéséhez */
-    flex-direction: column;   /* Függőleges irányban helyezi el a tartalmat */
+/* ========================================
+   1 KÁRTYÁS CAROUSEL – SZÉP, MODERN
+   ======================================== */
+#cityCarousel .carousel-item {
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.card-body {
-    flex-grow: 1;            /* A tartalom kitölti a maradék helyet a card-ban */
+/* Kártya keret */
+.city-card {
+    border-radius: 1.4rem !important;
+    overflow: hidden;
+    background: #fff;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,.1);
+    height: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Hover effekt */
+.city-card:hover {
+    transform: translateY(-16px) scale(1.02);
+    box-shadow: 0 2.5rem 6rem rgba(0,0,0,.32) !important;
+    z-index: 2;
+}
+
+.city-card:hover img {
+    transform: scale(1.12);
+}
+
+.city-card:hover .hover-overlay {
+    opacity: 0.3;
+}
+
+/* Kép konténer – FIX MAGASSÁG */
+.city-card .position-relative {
+    height: 280px !important;
+    overflow: hidden;
+}
+
+.city-card img {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .5s ease;
+}
+
+/* Overlay sötét átmenet */
+.hover-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.45), rgba(0,0,0,0.1));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+/* Szöveg */
+.city-card .card-body {
+    padding: 1.75rem 1.5rem;
+}
+
+.city-card .card-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: #0d6efd;
+    margin-bottom: 0.75rem;
+}
+
+.city-card .card-text {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: #555 !important;
+    margin-bottom: 0;
+}
+
+/* ========================================
+   LAPOZÓ GOMBOK – NAGY, KEREK, SZÉP
+   ======================================== */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 70px !important;
+    height: 70px !important;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.9;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,.3);
+}
+
+.carousel-control-prev { left: 15px; }
+.carousel-control-next { right: 15px; }
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 0.8rem 2rem rgba(0,0,0,.4);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-image: none !important;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 2.3rem;
+    color: white;
+    width: auto;
+    height: auto;
+}
+
+.carousel-control-prev-icon::before { content: "\f053"; }
+.carousel-control-next-icon::before { content: "\f054"; }
+
+/* ========================================
+   PONTok (INDIKÁTOROK) – SZÉP, ANIMÁLT
+   ======================================== */
+.carousel-indicators {
+    bottom: auto !important;
+    position: relative;
+    margin-top: 2.5rem !important;
+    padding: 0;
+    justify-content: center;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #bbb;
+    border: none;
+    margin: 0 9px;
+    opacity: 1;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: scale(0.85);
+    box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
+}
+
+.carousel-indicators .active {
+    background-color: #0d6efd;
+    transform: scale(1.4);
+    box-shadow: 0 0 0 5px rgba(13, 110, 253, 0.3);
+}
+
+/* ========================================
+   MOBILNÉZET – Tökéletes
+   ======================================== */
+@media (max-width: 767.98px) {
+    .city-card {
+        max-width: 100%;
+        margin: 0 10px;
+    }
+
+    .city-card .position-relative {
+        height: 220px !important;
+    }
+
+    .city-card .card-title {
+        font-size: 1.5rem;
+    }
+
+    .city-card .card-text {
+        font-size: 0.95rem;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 55px !important;
+        height: 55px !important;
+    }
+
+    .carousel-control-prev { left: 8px; }
+    .carousel-control-next { right: 8px; }
+
+    .carousel-indicators {
+        margin-top: 1.8rem !important;
+    }
+
+    .carousel-indicators [data-bs-target] {
+        width: 14px;
+        height: 14px;
+        margin: 0 7px;
+    }
+}
+
+@media (max-width: 480px) {
+    .city-card .card-body {
+        padding: 1.25rem 1rem;
+    }
 }
