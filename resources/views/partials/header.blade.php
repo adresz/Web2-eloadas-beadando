@@ -22,13 +22,18 @@
                 @endauth
 
                 @auth
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                            @csrf
-                            <button type="submit" class="button alt">Kijelentkezés</button>
-                        </form>
-                    </li>
+                <li class="logout-item">
+                    <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Kijelentkezés
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+                        @csrf
+                    </form>
+                </li>
                 @endauth
+
 
                 @guest
                     <li class="{{ Route::is('login') ? 'active' : '' }}"><a href="{{ route('login') }}">Bejelentkezés</a></li>

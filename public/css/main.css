@@ -1567,7 +1567,10 @@ table.alt {
 		input[type="reset"].alt,
 		button.alt,
 		.button.alt {
-			background-color: #464a52;
+			background-color: rgba(59, 62, 69, 0.9);
+			font-size: 0.9em;
+			padding: 0em 0.9em;
+			border-color: rgba(59, 62, 69, 0.9);
 		}
 
 			input[type="button"].alt:hover,
