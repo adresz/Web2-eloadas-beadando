@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LelekszamController;
 use App\Http\Controllers\UzenetController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('home');
@@ -30,10 +31,10 @@ Route::get('/diagram', [ChartController::class, 'topvarosok'])->name('diagram');
 
 Route::resource('lelekszam', LelekszamController::class);
 
-Route::get('/admin', function () {
-    return view('admin');
-})->name('admin') -> middleware('admin');
-
+Route::middleware('admin')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    Route::get('/admin/users/{id}', [AdminController::class, 'show'])->name('admin.users.show');
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
