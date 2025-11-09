@@ -13,7 +13,7 @@
                     <p>Válassz megyét a városok és népességadatok megtekintéséhez</p>
                 </header>
 
-                <!-- Megye választó -->
+               
                 <form method="GET" action="{{ route('adatbazis') }}">
                     <div class="row gtr-50">
                         <div class="col-9 col-12-xsmall">
@@ -33,10 +33,10 @@
                     </div>
                 </form>
 
-                <!-- Kis térköz -->
+               
                 <div style="margin-top: 2rem;"></div>
 
-                <!-- Kiválasztott megye -->
+                
                 @if($kivalasztottMegye)
                     <div style="text-align: center; margin-top: 1rem;">
                         <h2 class="major" style="margin-bottom: 1.5rem;">
@@ -58,10 +58,10 @@
                                 <tbody>
                                     @foreach($varosok as $varos)
                                         <tr>
-                                            <!-- VÁROS -->
+                                            
                                             <td><strong>{{ $varos->nev }}</strong></td>
 
-                                            <!-- TÍPUS -->
+                                            
                                             <td>
                                                 @if($varos->megyeijogu == 1 && $varos->megyeszekhely == 1)
                                                     Megyei jogú székhely
@@ -74,7 +74,7 @@
                                                 @endif
                                             </td>
 
-                                            <!-- NÉPESSÉG -->
+                                            
                                             <td>
                                                 @if($varos->legutolsoLelekszam)
                                                     <strong>{{ number_format($varos->legutolsoLelekszam->osszesen) }}</strong> fő
@@ -83,7 +83,7 @@
                                                 @endif
                                             </td>
 
-                                            <!-- ÉV -->
+                                         
                                             <td>{{ $varos->legutolsoLelekszam?->ev ?? '–' }}</td>
                                         </tr>
                                     @endforeach

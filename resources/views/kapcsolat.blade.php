@@ -6,7 +6,7 @@
 @section('content')
 
 <?php   
-// Ha a validációs szabályok sikeresek, és az űrlapadatok helyesen kerülnek elküldésre: 
+
 if(isset($request)){   
 echo "<h1>Results</h1>"; 
 echo "Név: ".$request->name."<br>"; 

@@ -27,7 +27,7 @@ $cities = [
                     <p class="lead">Fedezze fel Magyarország hat gyönyörű városát</p>
                 </header>
 
-                <!-- CAROUSEL: CSAK 1 KÁRTYA / SLIDE -->
+               
                 <div id="cityCarousel" class="carousel slide" data-bs-ride="false">
                     <div class="carousel-inner">
                         <?php foreach($cities as $index => $c): ?>
@@ -56,7 +56,7 @@ $cities = [
                         <?php endforeach; ?>
                     </div>
 
-                    <!-- NYILAK -->
+                    
                     <button class="carousel-control-prev" type="button" data-bs-target="#cityCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Előző</span>
@@ -66,7 +66,7 @@ $cities = [
                         <span class="visually-hidden">Következő</span>
                     </button>
 
-                    <!-- PONTok -->
+                   
                     <div class="carousel-indicators mt-4">
                         <?php for($i = 0; $i < count($cities); $i++): ?>
                             <button type="button" 
@@ -80,7 +80,7 @@ $cities = [
 
                 <hr class="my-5">
 
-                <!-- RÉSZLETES LEÍRÁSOK (ugyanaz, mint eddig) -->
+                
                 <?php foreach($cities as $c): ?>
                 <section id="<?= $c['slug'] ?>" class="city bg-white rounded-4 shadow p-5 mb-5">
                     <div class="row g-5 align-items-center">

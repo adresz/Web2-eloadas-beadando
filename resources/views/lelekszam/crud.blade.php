@@ -51,7 +51,7 @@
             });
         });
 
-        // *** ÚJ: Kiemelés logika ***
+
         const searchTerm = "{{ request('search') }}".trim().toLowerCase();
         if (searchTerm) {
             const rows = document.querySelectorAll('.crud-table tbody tr');
@@ -59,21 +59,21 @@
                 let found = false;
                 const cells = row.querySelectorAll('td');
                 cells.forEach((cell, index) => {
-                    if (index === cells.length - 1) return; // Műveletek oszlop kihagyása
+                    if (index === cells.length - 1) return; 
 
                     let cellText = cell.textContent.trim().toLowerCase();
-                    // Számoknál vessző eltávolítása (pl. 3,962 → 3962)
+                  
                     cellText = cellText.replace(/,/g, '');
 
                     if (cellText.includes(searchTerm)) {
                         found = true;
-                        // Kiemelés csak az adott cellára
+                      
                         cell.classList.add('highlight');
                     }
                 });
 
                 if (found) {
-                    // Opcionális: egész sor hover kiemelés
+       
                     row.style.borderLeft = '4px solid #ffc107';
                 }
             });

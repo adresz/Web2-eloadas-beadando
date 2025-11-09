@@ -1,85 +1,83 @@
-    .user-table {
-        width: 100%;
-        border-collapse: collapse;
-        background: #fff;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        border-radius: 10px;
-        overflow: hidden;
-    }
+/* ==========================================================================
+   ADMIN.CSS – csak a szépítés, a scroll a .table-wrapper-ből jön
+   ========================================================================== */
 
-    .user-table th {
-        background: #2c3e50;
-        color: #ecf0f1;
-        padding: 12px;
-        text-align: left;
-    }
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+    min-width: 600px;               /* ne törjön össze */
+}
 
-    .user-table td {
-        padding: 10px 12px;
-        border-bottom: 1px solid #eee;
-        font-size: 0.95rem;
-    }
+.user-table th {
+    background:#2c3e50;
+    color:#ecf0f1;
+    padding:14px 12px;
+    text-align:left;
+    font-weight:600;
+    font-size:.95rem;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
 
-    .user-table tr:hover {
-        background: #f5f8fa;
-        transition: background 0.2s;
-    }
+.user-table td {
+    padding:12px;
+    border-bottom:1px solid #eee;
+    font-size:.95rem;
+    vertical-align:middle;
+}
 
-    .user-table tr.active {
-        background: #d1f5e1 !important;
-    }
+.user-table tr:hover {background:#f5f8fa; transition:background .2s ease;}
+.user-table tr.active {background:#d1f5e1 !important;}
 
-    .user-link {
-        color: #2c3e50;
-        text-decoration: none;
-        font-weight: 600;
-    }
+/* ---------- ROLE BADGE ---------- */
+.role-badge{
+    display:inline-block;
+    padding:.35rem .75rem;
+    font-size:.8rem;
+    font-weight:700;
+    border-radius:1.5rem;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    min-width:88px;
+    text-align:center;
+    box-shadow:0 1px 3px rgba(0,0,0,.15);
+    transition:transform .15s ease;
+}
+.role-badge:hover{transform:translateY(-1px);}
+.role-admin{background:#e74c3c;color:#fff;}
+.role-user{background:#27ae60;color:#fff;}
+.role-moderator{background:#f39c12;color:#fff;}
 
-    .user-link:hover {
-        color: #1abc9c;
-        text-decoration: underline;
-    }
+/* ---------- REGISZTRÁLT ---------- */
+.registered-cell{background:#f8fafc !important;font-weight:500;}
+.registered-date{
+    display:inline-block;
+    padding:.45rem .9rem;
+    background:#e2e8f0;
+    color:#2d3748;
+    font-family:'Courier New',monospace;
+    font-size:.85rem;
+    font-weight:600;
+    border-radius:8px;
+    border-left:4px solid #718096;
+    box-shadow:0 1px 2px rgba(0,0,0,.08);
+    min-width:92px;
+    text-align:center;
+    letter-spacing:.5px;
+}
 
-    .role {
-        padding: 4px 8px;
-        border-radius: 8px;
-        color: #fff;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
+/* ---------- EGYÉB ---------- */
+.alert{border-radius:8px;font-size:.95rem;}
+h1.mb-4{color:#2c3e50;font-weight:600;}
 
-    .role-admin { background: #e74c3c; }
-    .role-user { background: #27ae60; }
-    .role-moderator { background: #f39c12; }
-
-    .user-card {
-        margin-top: 30px;
-        padding: 20px;
-        background: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .user-card h2 {
-        margin-bottom: 10px;
-    }
-
-    .user-card p {
-        margin: 5px 0;
-    }
-
-    .back-btn {
-        display: inline-block;
-        margin-top: 15px;
-        background: #1abc9c;
-        color: white;
-        padding: 8px 14px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 500;
-        transition: background 0.2s;
-    }
-
-    .back-btn:hover {
-        background: #16a085;
-    }
+/* mobil finomhangolás */
+@media (max-width:768px){
+    .user-table th,.user-table td{font-size:.85rem;padding:10px 8px;}
+    .role-badge{font-size:.75rem;padding:.3rem .6rem;min-width:76px;}
+    .registered-date{font-size:.8rem;padding:.35rem .7rem;}
+}
