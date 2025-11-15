@@ -34,38 +34,87 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($uzenetek as $uzenet)
-                                        <tr class="message-row">
-                                            <td class="clickable-name">
-                                                <strong>{{ $uzenet->nev }}</strong>
-                                            </td>
-                                            <td>{{ $uzenet->email }}</td>
-                                            <td>
-                                                @switch($uzenet->varos)
-                                                    @case('1') <span class="varos">Budapest</span> @break
-                                                    @case('2') <span class="varos">Kecskemét</span> @break
-                                                    @case('3') <span class="varos">Pécs</span> @break
-                                                    @case('4') <span class="varos">Debrecen</span> @break
-                                                    @default   <span class="varos">Egyéb</span>
-                                                @endswitch
-                                            </td>
-                                            <td>{{ $uzenet->kor }}</td>
-                                            <td class="uzenet-cell">
-                                                {{ Str::limit($uzenet->uzenet, 60) }}
-                                            </td>
-                                            <td>{{ $uzenet->created_at->format('Y.m.d H:i') }}</td>
-                                        </tr>
+                                @foreach($uzenetek as $uzenet)
+                                <tr class="message-row">
+                                    <td class="clickable-name">
+                                        <strong>{{ $uzenet->nev }}</strong>
+                                    </td>
+                                    <td>{{ $uzenet->email }}</td>
+                                    <td>
+                                        @switch($uzenet->varos)
+                                            @case('1') <span class="varos">Budapest</span> @break
+                                            @case('2') <span class="varos">Kecskemét</span> @break
+                                            @case('3') <span class="varos">Pécs</span> @break
+                                            @case('4') <span class="varos">Debrecen</span> @break
+                                            @default   <span class="varos">Egyéb</span>
+                                        @endswitch
+                                    </td>
+                                    <td>{{ $uzenet->kor }}</td>
+                                    <td class="uzenet-cell">
+                                        {{ Str::limit($uzenet->uzenet, 60) }}
+                                    </td>
+                                    <td>{{ $uzenet->created_at->format('Y.m.d H:i') }}</td>
+                                </tr>
 
-                                        <!-- KIBONTHATÓ TELJES ÜZENET -->
-                                        <tr class="expanded-message" style="display: none;">
-                                            <td colspan="6" class="p-4 bg-light">
-                                                <div class="full-message">
-                                                    <strong>Teljes üzenet:</strong><br>
-                                                    {!! nl2br(e($uzenet->uzenet)) !!}
+                                <!-- KIBONTHATÓ TELJES ÜZENET + ÖSSZES ADAT -->
+                                <tr class="expanded-message" style="display: none;">
+                                    <td colspan="6" class="p-4 bg-light">
+                                        <div class="full-message-container">
+                                            <h5 class="mb-3 text-primary">Teljes üzenet részletei</h5>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <table class="table table-sm table-borderless detail-table">
+                                                        <tr>
+                                                            <td class="font-weight-bold text-muted">Név:</td>
+                                                            <td>{{ $uzenet->nev }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-weight-bold text-muted">Email:</td>
+                                                            <td><a href="mailto:{{ $uzenet->email }}">{{ $uzenet->email }}</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-weight-bold text-muted">Város:</td>
+                                                            <td>
+                                                                @switch($uzenet->varos)
+                                                                    @case('1') Budapest @break
+                                                                    @case('2') Kecskemét @break
+                                                                    @case('3') Pécs @break
+                                                                    @case('4') Debrecen @break
+                                                                    @default Egyéb
+                                                                @endswitch
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-weight-bold text-muted">Kor:</td>
+                                                            <td>{{ $uzenet->kor }} év</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="font-weight-bold text-muted">Küldve:</td>
+                                                            <td>{{ $uzenet->created_at->format('Y. m. d. H:i:s') }}</td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                <div class="col-md-6">
+                                                    <div class="message-box p-3 bg-white rounded border">
+                                                        <strong class="d-block mb-2">Üzenet:</strong>
+                                                        <div class="message-content">
+                                                            {!! nl2br(e($uzenet->uzenet)) !!}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Válasz gomb (opcionális, ha szeretnél) -->
+                                            <div class="mt-3 text-right">
+                                                <a href="mailto:{{ $uzenet->email }}?subject=Válasz%20az%20üzenetedre" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-reply"></i> Válasz írása
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                                 </tbody>
                             </table>
                         </div>
