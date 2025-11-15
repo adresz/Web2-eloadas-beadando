@@ -250,3 +250,26 @@
         font-size: 0.8rem;
     }
 }
+
+/* Válasz gomb – alap pozíció nagy képernyőn */
+.reply-btn-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Gomb stílusa */
+.reply-btn-wrapper a.btn {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem;
+}
+
+/* Mobilon a gomb a message-box alatt jobbra igazítva */
+@media (max-width: 768px) {
+    .reply-btn-wrapper {
+        position: static !important;
+        display: block;
+        margin-top: 0.5rem;
+        text-align: right;
+    }
+}
